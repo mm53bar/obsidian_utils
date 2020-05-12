@@ -1,0 +1,50 @@
+/* Custom font */
+/* Comment this out if you don't have iA Writer Duospace installed */
+.cm-s-obsidian {
+  font-family: "iA Writer Duospace";
+}
+
+/* Collapsing sidedocks */
+.app-container.is-left-sidedock-collapsed .side-dock.mod-left:not(:hover), .app-container.is-right-sidedock-collapsed .side-dock.mod-right:not(:hover) {
+  width: 0px !important;
+}
+
+/* Clean header */
+.workspace-leaf-header {
+  background-color: var(--background-primary) !important;
+  border-bottom: 0px !important;
+}
+
+/* Cleaner status bar */
+.status-bar {
+  background-color: var(--background-primary);
+  color: var(--text-faint);
+}
+
+
+/* Markdown syntax highlighting */
+/* Header hashes */
+.cm-formatting-header {
+  color: var(--markdown-header-hash) !important;
+}
+/* Lists */
+.cm-formatting-list {
+  color: var(--markdown-list) !important;
+}
+
+
+/* --------------- */
+/* Custom colors */
+.theme-dark {
+  --background-primary: #000;
+  --background-secondary: #000;
+
+  --text-normal: #dedcde;
+  --text-accent:  #94a8b3;
+  --text-accent-hover: #83959e;
+}
+
+.theme-light {
+  --text-accent:  #6b8c9c;
+  --text-accent-hover: #81a7b9;
+}
