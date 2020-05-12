@@ -1,7 +1,8 @@
+/* from https://github.com/kmaasrud/clean-theme-obsidian*/
+
 /* Custom font */
-/* Comment this out if you don't have iA Writer Duospace installed */
 .cm-s-obsidian {
-  font-family: "iA Writer Duospace";
+  font-family: "Fira Code";
 }
 
 /* Collapsing sidedocks */
@@ -27,6 +28,16 @@
 .cm-formatting-header {
   color: var(--markdown-header-hash) !important;
 }
+
+.HyperMD-header .cm-formatting-header {
+  color: #c2c2c2!important;
+  opacity: .9;
+  font-size: 80%;
+  text-decoration: none;
+  font-weight: 100;
+  margin-right: -.5em;
+}
+
 /* Lists */
 .cm-formatting-list {
   color: var(--markdown-list) !important;
