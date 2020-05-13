@@ -4,7 +4,9 @@ def read_markdown_directory(raw_directory)
   contents = {}
   rbfiles = File.join("**", "*.md")
   Dir.glob(rbfiles, base:raw_directory).each do |filename|
-    contents[filename] = File.read(File.join(raw_directory,filename))
+    unless filename == 'TODO.md'
+      contents[filename.chomp('.md')] = File.read(File.join(raw_directory,filename))
+    end
   end
   contents
 end
