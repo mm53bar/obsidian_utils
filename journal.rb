@@ -21,6 +21,15 @@ journal_template = <<~JOURNAL
   * [ ] 🗓 Check calendar
   * [ ] Review events for [[#{last_year}]]
   * 
+
+
+  ## Previous Notes
+
+  ![[#{today.prev_day.strftime('%Y-%m-%d')}]]
+  ![[#{today.prev_day(2).strftime('%Y-%m-%d')}]]
+  ![[#{today.prev_day(3).strftime('%Y-%m-%d')}]]
+  ![[#{today.prev_day(4).strftime('%Y-%m-%d')}]]
+  ![[#{today.prev_day(5).strftime('%Y-%m-%d')}]]
 JOURNAL
 
 File.open("#{filepath}#{filename}", 'a') { |f| f.write "#{journal_template}" }
