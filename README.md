@@ -33,7 +33,20 @@ This script will work for the `*`, `-`, and `+` bullet syntaxes in Markdown.
 - [ ] This is a todo
 + [ ] This is a todo
 ```
+
 **NOTE** - this script overwrites the `TODO.md` file each time it is run. If you manually write any notes to `TODO.md` and then run this script, those notes will be lost.
+
+### clean.rb
+
+To run:
+
+```
+ruby clean.rb
+```
+
+Clean.rb will loop through all ofthe markdown files in your notes directory (including subdirectories) to find any files that are both 1) empty (filesize = zero), and 2) unlinked in any other note. If it finds notes that fit those criteria, it deletes them from your filesystem.
+
+**NOTE** - this script is intentionally destructive! It is highly recommended that you have your notes under version control or backed up somehow before runing this script. Cleaned files are not moved to the trash - they are immediately deleted!
 
 ## How to run Ruby scripts
 
@@ -43,8 +56,8 @@ Once you have ruby installed, you should be able to execute any of the scripts b
 
 ## Notes
 
-* Back up your vault before executing any of these scripts! They might be destructive and could wipe out all of your notes.
-* I keep all of my notes in one folder that's in a `Notes` folder in my home folder. I try to keep a variable for the `notes_path` in each of the scripts that you can edit for your local setup.
+- Back up your vault before executing any of these scripts! They might be destructive and could wipe out all of your notes.
+- I keep all of my notes in one folder that's in a `Notes` folder in my home folder. I try to keep a variable for the `notes_path` in each of the scripts that you can edit for your local setup.
 
 ## Disclaimer
 
