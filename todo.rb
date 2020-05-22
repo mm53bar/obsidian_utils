@@ -16,8 +16,8 @@ end
 def extract_todo_lines(contents)
   todo_text = ''
   contents.each do |filename, content|
-    content.scan(/[\*\-+]\s\[\s\]\s.*/).flatten.each do |match|
-      todo_text += "#{match} [[#{filename}]]\n"
+    content.scan(/[\*\-+]\s\[\s\]\s(.*)/).flatten.each do |match|
+      todo_text += "- #{match} [[#{filename}]]\n"
     end
   end
   todo_text = 'Nothing to do!' if todo_text.empty?
