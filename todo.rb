@@ -4,7 +4,7 @@ def read_markdown_directory(raw_directory)
   contents = {}
   rbfiles = File.join("**", "*.md")
   Dir.chdir(raw_directory) do
-    Dir.glob(rbfiles).each do |filename|
+    Dir.glob(rbfiles).sort_by{ |f| File.mtime(f) }.reverse.each do |filename|
       unless filename == 'TODO.md'
         contents[filename.chomp('.md')] = File.read(filename)
       end
