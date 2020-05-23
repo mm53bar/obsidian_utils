@@ -14,19 +14,38 @@ def read_markdown_directory(raw_directory)
 end
 
 def extract_todo_lines(contents)
-  todo_text = ''
+  todo_lines = {}
   contents.each do |filename, content|
+    todo_text = ''
     content.scan(/[\*\-+]\s\[\s\]\s(.*)/).flatten.each do |match|
       todo_text += "- #{match} [[#{filename}]]\n"
     end
+    todo_lines[filename] = todo_text unless todo_text.empty?
   end
-  todo_text = 'Nothing to do!' if todo_text.empty?
-  return todo_text
+  return todo_lines
 end
+
+def write_simple_todo_file(filepath, todo_lines)
+  todo_notes = todo_lines.map{ |k,v| v }.join
+  File.write(filepath, "# TODO\n\n#{todo_notes}")
+end
+
+def write_todo_file(filepath, todo_lines)
+  File.open(filepath, 'w') do |file|
+    file.write "# TODO\n\n"
+    todo_lines.each do |filename, lines|
+      file.write "## #{filename}\n\n#{lines}\n"
+    end
+  end 
+end 
 
 notes_path = "#{ENV['HOME']}/Notes/"
 todo_filepath = notes_path + 'TODO.md'
 
 notes = read_markdown_directory(notes_path)
-todo_notes = extract_todo_lines(notes)
-File.write(todo_filepath, "# TODO\n\n#{todo_notes}")
+todo_lines = extract_todo_lines(notes)
+
+write_simple_todo_file(todo_filepath, todo_lines)
+
+
+
