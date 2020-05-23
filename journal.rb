@@ -21,11 +21,12 @@ journal_template = <<~JOURNAL
   #{today_weather_list[0]}
   #{today_weather_list[1]}
 
-  ## Daily Notes
-
+  ## TODO
   - [ ] 🗓 Check calendar for scheduled events
   - 
 
+  ## Daily Notes
+  - 
 JOURNAL
 
 File.open("#{filepath}#{filename}", 'a') { |f| f.write "#{journal_template}" }
