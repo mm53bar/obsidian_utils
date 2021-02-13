@@ -1,9 +1,12 @@
 #!/usr/bin/env ruby
 require 'date'
 
-filepath = "#{ENV['HOME']}/Notes/"
+require_relative './utils.rb'
+
+filepath = get_notes_path_from_cli_args()
+
 today = Date.today
-filename = today.strftime('%Y-%m-%d.md')
+day_filename = today.strftime('%Y-%m-%d.md')
 last_year = today.prev_year.strftime('%Y-%m-%d')
 this_week = today.strftime('%G-W%V')
 this_week_monday = today - (today.cwday-1)
@@ -29,9 +32,10 @@ journal_template = <<~JOURNAL
   - 
 JOURNAL
 
-File.open("#{filepath}#{filename}", 'a') { |f| f.write "#{journal_template}" }
+day_filepath = filepath + day_filename
+File.open(day_filepath, 'a') { |f| f.write "#{journal_template}" }
 
-puts "Wrote daily template to #{filepath}#{filename}"
+puts "Wrote daily template to #{day_filepath}"
 
 weekly_template = <<~WEEKLY
   # #{this_week}
@@ -67,7 +71,8 @@ weekly_template = <<~WEEKLY
       - 
 WEEKLY
 
-unless File.exist?("#{filepath}#{week_filename}") 
-  File.open("#{filepath}#{week_filename}", 'w') { |f| f.write "#{weekly_template}" }
-  puts "Wrote weekly template to #{filepath}#{week_filename}"
+week_filepath = filepath + week_filename
+unless File.exist?(week_filepath) 
+  File.open(week_filepath, 'w') { |f| f.write "#{weekly_template}" }
+  puts "Wrote weekly template to #{week_filepath}"
 end

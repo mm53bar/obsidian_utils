@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require_relative './utils.rb'
+
 def read_markdown_directory(raw_directory)
   links = []
   rbfiles = File.join("**", "*.md")
@@ -18,10 +20,10 @@ def clean_empty_files(raw_directory, links_list)
         File.delete(File.join(raw_directory,filename))
       end
     end
-  end 
+  end
 end
 
-notes_path = "#{ENV['HOME']}/Notes/"
+notes_path = get_notes_path_from_cli_args()
 
 links_list = read_markdown_directory(notes_path)
 clean_empty_files(notes_path, links_list)
