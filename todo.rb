@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require_relative './utils.rb'
+
 def read_markdown_directory(raw_directory)
   contents = {}
   rbfiles = File.join("**", "*.md")
@@ -36,16 +38,14 @@ def write_todo_file(filepath, todo_lines)
     todo_lines.each do |filename, lines|
       file.write "## #{filename}\n\n#{lines}\n"
     end
-  end 
-end 
+  end
+end
 
-notes_path = "#{ENV['HOME']}/Notes/"
+
+notes_path = get_notes_path_from_cli_args()
 todo_filepath = notes_path + 'TODO.md'
 
 notes = read_markdown_directory(notes_path)
 todo_lines = extract_todo_lines(notes)
 
 write_simple_todo_file(todo_filepath, todo_lines)
-
-
-

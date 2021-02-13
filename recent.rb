@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 require 'date'
 
+require_relative './utils.rb'
+
 def read_markdown_directory(raw_directory)
   contents = {}
   recent_day_range = (Date.today.prev_day(7)..Date.today)
@@ -27,12 +29,9 @@ def write_recent_file(filepath, recent_notes)
   end 
 end 
 
-notes_path = "#{ENV['HOME']}/Notes/"
+notes_path = get_notes_path_from_cli_args()
 recent_filepath = notes_path + 'RECENT.md'
 
 recent_notes = read_markdown_directory(notes_path)
 
 write_recent_file(recent_filepath, recent_notes)
-
-
-
